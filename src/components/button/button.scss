@@ -1,0 +1,26 @@
+@import url(../../style/fonts.scss);
+
+.button {
+  font-family: Gotham;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 17px;
+  height: 38px;
+  text-align: center;
+  border-radius: 10px;
+  vertical-align: middle;
+  float: right;
+  margin-right: 15px;
+  &::after {
+    content: '';
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .title {
+    vertical-align: middle;
+    display: inline-block;
+    color: #fff;
+    width: 100%;
+  }
+}

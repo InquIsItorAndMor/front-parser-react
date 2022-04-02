@@ -12,7 +12,7 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist\\js'),
-    publicPath: './js',
+    publicPath: './js/',
   },
   devtool: 'source-map', // карты для отладки
   module: {
@@ -27,17 +27,6 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-        ],
-      },
-      {
         test: /\.s[ac]ss$/,
         use: [
           {
@@ -48,6 +37,29 @@ module.exports = {
           },
           {
             loader: 'sass-loader',
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: './../assets/[name].[contenthash].[ext]',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: `./../fonts/[name].[contenthash].[ext]`,
+              publicPath: '../',
+            },
           },
         ],
       },
