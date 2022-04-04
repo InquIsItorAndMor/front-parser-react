@@ -1,5 +1,3 @@
-@import url(../../style/fonts.scss);
-
 .table {
   margin-left: 7.3%;
   margin-right: 7.3%;
@@ -9,16 +7,19 @@
   font-size: 18px;
   line-height: 24px;
   font-weight: bold;
+
   .disabled {
     opacity: 0.5;
     pointer-events: none;
   }
+
   .table-th {
     text-align: left;
     display: inline-block;
     width: 30%;
     margin-bottom: 30px;
   }
+
   .table-row {
     background-color: #ffffff;
     color: #24272d;
@@ -26,25 +27,30 @@
     height: 60px;
     border-radius: 10px;
     margin-bottom: 30px;
+
     &.table-row__auto {
       height: auto;
     }
+
     &::after {
       content: '';
       height: 100%;
       vertical-align: middle;
       display: inline-block;
     }
+
     .table-td {
       width: 30%;
       display: inline-block;
       vertical-align: middle;
     }
+
     .table-td:first-child {
       .title {
         padding-left: 21px;
       }
     }
+
     .table-td:last-child {
       width: 40%;
     }

@@ -27,6 +27,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.7.1",
     "file-saver": "^2.0.5",
     "html-webpack-plugin": "^5.5.0",

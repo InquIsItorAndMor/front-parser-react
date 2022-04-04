@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
 
 module.exports = {
@@ -51,18 +52,6 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.(woff|woff2|eot|ttf)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: `./../fonts/[name].[contenthash].[ext]`,
-              publicPath: '../',
-            },
-          },
-        ],
-      },
     ],
   },
   plugins: [
@@ -72,6 +61,15 @@ module.exports = {
       chunks: ['main'],
     }),
     new CleanWebpackPlugin(),
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/style', to: '../style' },
+        { from: 'src/fonts', to: '../fonts' },
+      ],
+      options: {
+        concurrency: 100,
+      },
+    }),
   ],
   optimization: {
     splitChunks: {
