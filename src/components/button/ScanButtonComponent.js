@@ -1,3 +1,5 @@
+import axios from 'axios'
+import FileSaver from 'file-saver'
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import StatusComponent from '../status/StatusComponent'
@@ -9,7 +11,9 @@ const ScanButtonComponent = (props) => {
   const [show, setShow] = useState('block')
   const showButtonStartScan = (event) => {
     console.log(event)
+    event.stopPropagation();
     setShow('none')
+    download()
     ReactDOM.render(
       <React.Fragment>
         <CancelButtonComponent />
@@ -17,6 +21,20 @@ const ScanButtonComponent = (props) => {
       </React.Fragment>,
       document.getElementById(props.id),
     )
+  }
+
+  const download = async () => {
+    await axios.get(props.url + '?category=' + props.catalogId, { responseType: 'blob' }).then((response) => {
+      const fileNameHeader = "content-disposition";
+      const suggestedFileName = response.headers[fileNameHeader].match(/(?<=filename=).*$/g);
+      const effectiveFileName = (suggestedFileName === undefined
+        ? "allergierOchPreferenser.xls"
+        : suggestedFileName);
+      FileSaver.saveAs(response.data, effectiveFileName);
+
+    }).catch((response) => {
+      console.error("Could not Download the Excel report from the backend.", response);
+    });
   }
 
   return (

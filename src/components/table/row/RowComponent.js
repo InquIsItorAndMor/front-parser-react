@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import ScanButtonComponent from '../../button/ScanButtonComponent'
 import axios from 'axios'
 import CataloguesComponent from '../CataloguesComponent'
+import { settings } from '../../../config'
 
 const RowComponent = (props) => {
   const [catalog, setCatalog] = useState([])
@@ -11,7 +12,7 @@ const RowComponent = (props) => {
   const getCataloguesSJ = async () => {
     if (catalog.length === 0) {
       await axios
-        .get('http://localhost:8080/sokratparsersj/getAllCatalogues')
+        .get(settings.urlCatalogSJ)
         .then((response) => {
           setCatalog(response.data)
         })
@@ -29,7 +30,9 @@ const RowComponent = (props) => {
     }
   }
 
-  const toggleCatalog = () => {
+  const toggleCatalog = (event) => {
+    console.log(event)
+    event.stopPropagation();
     if (show === 'none') {
       setClassRow('table-row table-row__auto')
       setShow('block')

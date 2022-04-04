@@ -1,4 +1,5 @@
 import React from 'react'
+import { settings } from '../../config'
 import ScanButtonComponent from '../button/ScanButtonComponent'
 import './table.scss'
 
@@ -13,7 +14,7 @@ const CataloguesComponent = (props) => {
             </div>
             <div className="table-td"></div>
             <div className="table-td" id={`catalog_row_${value.key}`}>
-              <ScanButtonComponent id={`catalog_row_${value.key}`} />
+              <ScanButtonComponent id={`catalog_row_${value.key}`} url={settings.ulrExcelVacanceSJ} catalogId={value.key} />
             </div>
           </div>
         )
