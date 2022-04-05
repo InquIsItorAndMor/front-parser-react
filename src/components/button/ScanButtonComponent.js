@@ -23,8 +23,16 @@ const ScanButtonComponent = (props) => {
     )
   }
 
+  const getUrl = () => {
+    let url = props.url;
+    for (var i = 0; i < props.urlParams.length; i++) {
+      url = url.replace('%s', props.urlParams[i]);
+    }
+    return url;
+  }
+
   const download = async () => {
-    await axios.get(props.url + '?category=' + props.catalogId, { responseType: 'blob' }).then((response) => {
+    await axios.get(getUrl(), { responseType: 'blob' }).then((response) => {
       const fileNameHeader = "content-disposition";
       const suggestedFileName = response.headers[fileNameHeader].match(/(?<=filename=).*$/g);
       const effectiveFileName = (suggestedFileName === undefined

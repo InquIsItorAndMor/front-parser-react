@@ -57,7 +57,7 @@ const RowComponent = (props) => {
       <div class="table-td"></div>
       {catalog.length == 0 ? (
         <div id={`row_${props.id}`} class="table-td">
-          <ScanButtonComponent id={`row_${props.id}`} />
+          <ScanButtonComponent id={`row_${props.id}`} url={props.url} urlParams={props.urlParams} />
         </div>
       ) : (
         ''
